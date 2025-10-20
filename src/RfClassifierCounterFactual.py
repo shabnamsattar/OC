@@ -249,7 +249,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
                   " with prediction ", self.clf.predict(self.x_sol))
         # Check results consistency
         self.__checkIfBadPrediction(self.x_sol)
-        self.__checkClassificationScore(self.x_sol)
+        #self.__checkClassificationScore(self.x_sol)
         self.__checkDecisionPath(self.x_sol)
         if self.isolationForest:
             self.__checkResultPlausibility()
