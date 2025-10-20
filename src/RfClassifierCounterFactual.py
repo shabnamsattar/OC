@@ -86,6 +86,28 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
             self.majorityVoteConstr[cl] = self.model.addConstr(
                 majorityVoteExpr[cl] >= 0, "majorityVoteConstr_cl" + str(cl))
 
+
+    def __addAnomalyScoreConstraint(self, threshold=0.0):
+        print("hi")
+        expr = gp.LinExpr(0.0)  # will hold the average depth E[h]
+        for t in self.completeForest.isolationForestEstimatorsIndices:
+            tm   = self.treeManagers[t]
+            tree = self.completeForest.estimators_[t]
+            for v in range(tm.n_nodes):
+                if tm.is_leaves[v]:
+                    depth = tm.node_depth[v] + _average_path_length([tree.tree_.n_node_samples[v]])[0]
+                    expr += depth * tm.y_var[v] / self.completeForest.n_estimators
+
+        c_n   = _average_path_length([self.isolationForest.max_samples_])[0]
+        delta = threshold + float(self.isolationForest.offset_)
+        if delta >= 0:
+            raise ValueError("threshold + offset_ must be negative for a valid cut-off")
+
+        log2_delta = math.log2(-delta)       # log2(−delta) < 0
+        constant   = -c_n * log2_delta       # positive
+        self.model.addConstr(expr >= constant, name="log2_anomaly_score_constraint")
+        print("Hi")                                   
+
     # -- Check model status and solution --
     def __checkIfBadPrediction(self, x_sol):
         badPrediction = (self.outputDesired != self.clf.predict(self.x_sol))
@@ -200,7 +222,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
     def buildModel(self):
         self.initSolution()
         self.buildForest()
-        self.__addMajorityVoteConstraint()
+        #self.__addAnomalyScoreConstraint()
         self.addActionnabilityConstraints()
         self.addOneHotEncodingConstraints()
 
