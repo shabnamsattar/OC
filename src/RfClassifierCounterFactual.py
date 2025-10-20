@@ -222,7 +222,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
     def buildModel(self):
         self.initSolution()
         self.buildForest()
-        #self.__addAnomalyScoreConstraint()
+        self.__addAnomalyScoreConstraint()
         self.addActionnabilityConstraints()
         self.addOneHotEncodingConstraints()
 
@@ -248,7 +248,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
             print("Solution built \n", self.x_sol,
                   " with prediction ", self.clf.predict(self.x_sol))
         # Check results consistency
-        self.__checkIfBadPrediction(self.x_sol)
+        #self.__checkIfBadPrediction(self.x_sol)
         #self.__checkClassificationScore(self.x_sol)
         self.__checkDecisionPath(self.x_sol)
         if self.isolationForest:
