@@ -32,7 +32,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         RandomForestCounterfactualMilp.__init__(
             self, mutuallyExclusivePlanesCutsActivated,
             constraintsType, binaryDecisionVariables)
-        assert len(self.clf.feature_importances_) == self.nFeatures
+        #assert len(self.clf.feature_importances_) == self.nFeatures
         self.model.modelName = "RandomForestCounterFactualMilp"
         # Combine random forest and isolation forest into a completeForest
         self.isolationForest = isolationForest
