@@ -251,6 +251,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         if self.verbose:
             print("Solution built \n", self.x_sol,
                   " with prediction ", self.clf.predict(self.x_sol))
+        print("run time:")  
         print(self.runTime)
         # Check results consistency
         #self.__checkIfBadPrediction(self.x_sol)
