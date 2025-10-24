@@ -228,7 +228,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         self.__addAnomalyScoreConstraint()
         self.addActionnabilityConstraints()
         self.addOneHotEncodingConstraints()
-        self.initObjective()
+        
 
     def solveModel(self):
         self.model.write("rf.lp")
