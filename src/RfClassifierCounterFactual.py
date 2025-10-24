@@ -91,7 +91,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
 
 
     def __addAnomalyScoreConstraint(self, threshold=0.0):
-        print("hi")
+        
         expr = gp.LinExpr(0.0)  # will hold the average depth E[h]
         for t in self.completeForest.randomForestEstimatorsIndices:
             tm   = self.treeManagers[t]
@@ -109,7 +109,7 @@ class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         log2_delta = math.log2(-delta)       # log2(−delta) < 0
         constant   = -c_n * log2_delta       # positive
         self.model.addConstr(expr >= constant, name="log2_anomaly_score_constraint")
-        print("Hi")                                   
+                                          
 
     # -- Check model status and solution --
     def __checkIfBadPrediction(self, x_sol):
