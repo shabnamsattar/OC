@@ -12,7 +12,7 @@ from src.CounterFactualParameters import BinaryDecisionVariables
 from src.CounterFactualParameters import TreeConstraintsType
 
 
-class RfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
+class IfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
                                      RandomForestCounterfactualMilp):
     def __init__(
             self, classifier, sample, outputDesired,
