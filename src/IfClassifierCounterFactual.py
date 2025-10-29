@@ -101,8 +101,8 @@ class IfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
                     depth = tm.node_depth[v] + _average_path_length([tree.tree_.n_node_samples[v]])[0]
                     expr += depth * tm.y_var[v] / self.completeForest.n_estimators
 
-        c_n   = _average_path_length([self.isol.max_samples_])[0]
-        delta = threshold + float(self.isol.offset_)
+        c_n   = _average_path_length([self.clf.max_samples_])[0]
+        delta = threshold + float(self.clf.offset_)
         if delta >= 0:
             raise ValueError("threshold + offset_ must be negative for a valid cut-off")
 
