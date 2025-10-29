@@ -372,5 +372,5 @@ class RandomForestCounterfactualMilp():
             self.__addMutuallyExclusivePlanesCuts()
         if self.isolationForest:
             self.__addIsolationForestPlausibilityConstraint()
-        #self.__initModelObjective()
-        self.initObjective()
+        self.__initModelObjective()
+        #self.initObjective()
