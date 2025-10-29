@@ -38,7 +38,7 @@ class IfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         self.model.modelName = "RandomForestCounterFactualMilp"
         # Combine random forest and isolation forest into a completeForest
         self.isolationForest = isolationForest
-        self.isol = classifier
+        #self.isol = classifier
         self.completeForest = RandomAndIsolationForest(self.clf,
                                                        isolationForest)
         # - Read and set formulation parameters -
