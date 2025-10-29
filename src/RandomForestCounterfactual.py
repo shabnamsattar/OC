@@ -373,4 +373,4 @@ class RandomForestCounterfactualMilp():
         if self.isolationForest:
             self.__addIsolationForestPlausibilityConstraint()
         self.__initModelObjective()
-        #self.initObjective()
+        
