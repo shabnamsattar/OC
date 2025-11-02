@@ -233,7 +233,7 @@ class IfClassifierCounterFactualMilp(ClassifierCounterFactualMilp,
         self.model.write("rf.lp")
         self.model.setParam(GRB.Param.ImpliedCuts, 2)
         self.model.setParam(GRB.Param.Threads, 8)
-        self.model.setParam(GRB.Param.TimeLimit, 150)
+        self.model.setParam(GRB.Param.TimeLimit, 200)
         self.model.optimize()
         self.runTime = self.model.Runtime
         if self.model.status != GRB.OPTIMAL:
